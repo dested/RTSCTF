@@ -12,6 +12,12 @@ namespace RTSCTF.Utility
         {
             return o;
         }
+        public static T GetSafe<T>(this T[][] o, int x, int y)
+        {
+            var m = o[x];
+            if (m == default(T[])) return default(T);
+            return o[x][y];
+        }
 
         public static void AddEvent(this Element element, string eventName, ElementEventListener listener)
         {
@@ -21,6 +27,32 @@ namespace RTSCTF.Utility
                 element.AttachEvent(eventName,() => listener(Window.Event));
             }
 
+        }
+        public static bool Loaded(this ImageElement element)
+        {
+            return element.GetAttribute("loaded") == "true";
+        }
+
+        public static void Loaded(this ImageElement element, bool set)
+        {
+            element.SetAttribute("loaded", set ? "true" : "false");
+        }
+
+        public static ImageElement LoadSprite(this string src, Action<ImageElement> complete=null)
+        {
+            var sprite1 = new ImageElement();
+            sprite1.AddEventListener("load",
+                                     e =>
+                                     {
+                                         sprite1.Loaded(true);
+                                         if (complete.Truthy()) {
+                                             if(complete!=null)
+                                                complete(sprite1);
+                                         }
+                                     },
+                                     false);
+            sprite1.Src = src;
+            return sprite1;
         }
 
 

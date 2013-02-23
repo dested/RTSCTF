@@ -10,9 +10,9 @@ namespace RTSCTF.Utility
         [IntrinsicProperty]
         public CanvasContext2D Context { get; set; }
         [IntrinsicProperty]
-        public jQueryObject JElement { get; set; }
+        public jQueryObject DomCanvas { get; set; }
         [IntrinsicProperty]
-        public CanvasElement Element { get; set; }
+        public CanvasElement Canvas { get; set; }
         public static CanvasElement BlackPixel
         {
             get
@@ -24,22 +24,26 @@ namespace RTSCTF.Utility
                     m.Context.FillStyle = "black";
                     m.Context.FillRect(0, 0, 1, 1);
 
-                    blackPixel = m.Element;
+                    blackPixel = m.Canvas;
                 }
                 return blackPixel;
             }
         }
+        [IntrinsicProperty]
+        public ImageElement Image { get; set; }
+        [IntrinsicProperty]
+        public bool ImageReady { get; set; }
 
         public CanvasInformation(CanvasContext2D context, jQueryObject domCanvas)
         {
             Context = context;
-            JElement = domCanvas;
-            Element = (CanvasElement)domCanvas[0];
+            DomCanvas = domCanvas;
+            Canvas = (CanvasElement)domCanvas[0];
         }
 
         public static CanvasInformation Create(int w, int h)
         {
-            var canvas = (CanvasElement)Document.CreateElement("canvas");
+            CanvasElement canvas = (CanvasElement)Document.CreateElement("canvas");
             return Create(canvas, w, h);
         }
 
@@ -50,8 +54,39 @@ namespace RTSCTF.Utility
             canvas.Width = w;
             canvas.Height = h;
 
-            var ctx = (CanvasContext2D)canvas.GetContext("2d"); 
+            var ctx = (CanvasContext2D)canvas.GetContext("2d");
             return new CanvasInformation(ctx, jQuery.FromElement(canvas));
+        }
+
+        public void Ready()
+        {
+            return;
+            ImageElement image = new ImageElement();
+            image.AddEventListener("load",
+                                   e =>
+                                   {
+                                       Image = image;
+                                       ImageReady = true;
+                                   },
+                                   false);
+            image.Src = Canvas.Me().toDataURL();
+        }
+
+        public static CanvasInformation Create(ImageElement tileImage)
+        {
+            var item = Create(tileImage.Width, tileImage.Height);
+
+            item.Context.DrawImage(tileImage, 0, 0);
+
+            return item;
+        }
+
+        public static CanvasInformation Create(ImageData imageData)
+        {
+            var item = Create(imageData.Width, imageData.Height);
+            item.Context.PutImageData(imageData, 0, 0);
+
+            return item;
         }
     }
 }

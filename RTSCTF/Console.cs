@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-namespace Isos
+namespace RTSCTF
 {
     [ScriptName("console")]
     [Imported,IgnoreNamespace]

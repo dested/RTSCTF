@@ -51,16 +51,71 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActionManager.cs" />
+    <Compile Include="AStarNode.cs" />
+    <Compile Include="ClickMode.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ClientGameManager.cs" />
+    <Compile Include="CollisionType.cs" />
     <Compile Include="Console.cs" />
-    <Compile Include="RTSCTF.cs" />
+    <Compile Include="DrawGameMap.cs" />
+    <Compile Include="DrawMapManager.cs" />
+    <Compile Include="DrawTile.cs" />
+    <Compile Include="DrawTileManager.cs" />
+    <Compile Include="DrawUnitManager.cs" />
+    <Compile Include="GameManager.cs" />
+    <Compile Include="GameMap.cs" />
+    <Compile Include="GameMapLayout.cs" />
+    <Compile Include="GameMode.cs" />
+    <Compile Include="JSONObjects\JsonMap.cs" />
+    <Compile Include="JSONObjects\JsonTileMap.cs" />
+    <Compile Include="MainGameManager.cs" />
+    <Compile Include="MapManager.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="ClientManager.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="TaskHandler.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="TileManager.cs" />
+    <Compile Include="TilePieceData.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="UnitManager.cs" />
     <Compile Include="Utility\CanvasInformation.cs" />
+    <Compile Include="Utility\Completed.cs" />
+    <Compile Include="Utility\DelegateOrValue.cs" />
     <Compile Include="Utility\Dragger.cs" />
     <Compile Include="Utility\Extensions.cs" />
     <Compile Include="Utility\ExtraData.cs" />
     <Compile Include="Utility\Help.cs" />
     <Compile Include="Utility\Point.cs" />
     <Compile Include="Utility\Pointer.cs" />
+    <Compile Include="Utility\SizeNumber.cs" />
+    <Compile Include="Utility\UIManager\Button.cs" />
+    <Compile Include="Utility\UIManager\CHelp.cs" />
+    <Compile Include="Utility\UIManager\EditorEngine.cs" />
+    <Compile Include="Utility\UIManager\EditorEnginePoint.cs" />
+    <Compile Include="Utility\UIManager\Element.cs" />
+    <Compile Include="Utility\UIManager\HScrollBox.cs" />
+    <Compile Include="Utility\UIManager\HtmlBox.cs" />
+    <Compile Include="Utility\UIManager\Image.cs" />
+    <Compile Include="Utility\UIManager\ImageButton.cs" />
+    <Compile Include="Utility\UIManager\LayoutPanel.cs" />
+    <Compile Include="Utility\UIManager\Panel.cs" />
+    <Compile Include="Utility\UIManager\PropertyButton.cs" />
+    <Compile Include="Utility\UIManager\ScrollBox.cs" />
+    <Compile Include="Utility\UIManager\Table.cs" />
+    <Compile Include="Utility\UIManager\TableCell.cs" />
+    <Compile Include="Utility\UIManager\TableRow.cs" />
+    <Compile Include="Utility\UIManager\TextArea.cs" />
+    <Compile Include="Utility\UIManager\TextBox.cs" />
+    <Compile Include="Utility\UIManager\UIArea.cs" />
+    <Compile Include="Utility\UIManager\UIManager.cs" />
+    <Compile Include="Utility\UIManager\UIManagerAreas.cs" />
+    <Compile Include="Waypoint.cs" />
+    <Compile Include="WaypointDeterminer.cs" />
+    <Compile Include="WindowManager.cs" />
+    <Compile Include="RTSCTFGameConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -81,6 +136,9 @@
     </Reference>
     <Reference Include="Script.jQuery.UI, Version=1.6.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <HintPath>..\packages\Saltarelle.jQuery.UI.1.6.3\lib\Script.jQuery.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Script.Linq">
+      <HintPath>packages\Saltarelle.Linq.1.6.2\lib\Script.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Script.Web, Version=1.6.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <HintPath>..\packages\Saltarelle.Web.1.6.3\lib\Script.Web.dll</HintPath>
